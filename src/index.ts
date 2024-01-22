@@ -34,9 +34,13 @@ config()
 
 wss.on('connection', (ws: WebSocket) => {
   console.log('Nowe połączenie WebSocket.');
-  ws.on('message', (message: string) => {
-    console.log(`Otrzymano wiadomość: ${message}`);
-    ws.send(`Odpowiedź na wiadomość: ${message}`);
+  ws.on('message', (message:string) => {
+
+
+    console.log(
+      JSON.parse(`${message}`)
+    )
+    ws.send(`${message}`);
   });
   ws.on('close', () => {
     console.log('Połączenie WebSocket zamknięte.');
